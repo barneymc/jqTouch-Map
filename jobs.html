@@ -1,0 +1,104 @@
+
+<html>
+    <head>
+        <title>Kilo</title>
+		<!--
+        <link type="text/css" rel="stylesheet" media="screen" href="jqtouch/jqtouch.css">
+		-->
+		<!--
+        <link type="text/css" rel="stylesheet" media="screen" href="themes/jqt/theme.css">
+		-->		
+		
+        <link type="text/css" rel="stylesheet" media="screen" href="jqtouch/bundle.css">
+				
+		<script type="text/javascript"  src="http://localhost/iPhone/jqTouch/xml2json.js"></script>
+		
+		 <script type="text/javascript" src="ccpc2.js"></script>
+        <script type="text/javascript" src="jqtouch/jquery.js"></script>
+        <script type="text/javascript" src="jqtouch/jqtouch.js"></script>
+       <style>
+	.contact
+	{
+		padding: 8px;
+		background:rgba(64,64,64,0.5);
+		border: 1px solid rgba(128,128,128,0.5);
+		opacity: 0.8;
+		-moz-border-radius: 8px;
+		-webkit-border-radius: 8px;
+		margin-bottom: .5em;
+		font: white;
+		font-family:arial;
+	}
+
+
+	</style>
+
+		<style type="text/css">
+		
+		.JobFileName
+		{
+			//font-size:20pt;
+			font-weight:bolder;
+		}
+		
+		.CustomerName
+		{
+		font-size:7pt;
+		//font-style:italic;
+		
+		}
+			.alternate
+			{
+				background-color: #DDDDDD;  //#99CC00 -> red
+				
+			}
+			
+			.tabled
+			{
+				font-size:16pt;
+				height:100px;
+			}
+		</STYLE>
+		<script type="text/javascript">
+		//$(document).ready(function(){
+
+		//('#events li:nth-child(odd)').addClass('alternate');
+
+		//});
+	</script>
+    </head>
+    <body onload="getJobsStart()">
+		<div id="container">
+			<div id="header">
+					<h2 id="logo">iCCPC</h2>
+			</div>
+			<ul id="nav">
+				
+			</ul>
+			<div id="content">
+				<div id="jobs">
+					
+					<div class="toolbar">
+							<h1>Jobs</h1>
+							<a id="backbutton" class="button back" href="#">Logout</a>
+					</div>
+					<ul class="events" id="eventslist">
+						<li class="day-break">
+							<span class="day">Thursday</span>
+							<span class="num">May 20</span>
+						</li>
+						<li class="arrow"><a id="0" href="#jobs" onclick="readrows();">JobFiles</a></li>
+						<li class="event" id="entryTemplate" style="display:none">
+						
+							<a id="q" href="quotes.html?jobid=">
+							<img id="avatarimg" alt="brendan.mcardle (at gmail)" class="avatar" src="themes/jqt/img/avatar.gif" title="brendan.mcardle (at gmail)">
+									<span class="JobFileName" >&nbsp;&nbsp;</span><BR>
+								<span class="CustomerName">&nbsp;&nbsp;</span>
+								</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+    </body>
+</html>

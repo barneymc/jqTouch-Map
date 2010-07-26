@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+    <head>
+    <meta charset="UTF-8" />
+    <title>Demo</title>
+    <style type="text/css" media="screen">@import "jqtouch/jqtouch.css";</style>
+    <style type="text/css" media="screen">@import "themes/apple/theme.css";</style>
+    <style type="text/css">
+        #map_text { 
+            position: absolute; 
+            z-index: 1000; 
+            top: 45px;
+            background-color: rgb(0,0,0); 
+            opacity: .75; 
+            width: 100%; 
+            padding: 8px 0px 8px 0px; 
+            margin: 0; 
+            border: 0;
+            color: white;
+        }
+
+        <!--// BEGIN MAP CSS //-->
+        #map_canvas {
+            width: 100%;
+            height: 250px;
+        }
+        body.profile #map_canvas {
+            min-height: 250px;
+        }
+        body.landscape #map_canvas {
+            min-height: 250px;
+        }
+        .mapcontrol {
+            text-decoration: none;
+            -webkit-border-radius: 4px;
+            -webkit-box-shadow: rgba(0,0,0,.75) 1px 1px 3px;
+            font-family: Arial;
+            font-size: 20px;
+            padding: 5px 10px 5px 10px;
+            border: 1px solid #AAA;
+            color: #6688CC;
+            text-align: center;
+            margin-bottom: 5px;
+            background-color: #FFF;
+        }
+        <!--// END MAP CSS //-->
+    </style>
+
+    <script src="jqtouch/jqTouch/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="jqtouch/jqTouch/jqtouch.js" type="application/x-javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script type="application/x-javascript" charset="utf-8">
+        function localiser() {
+            if ($("#map_canvas").html()) return;
+
+            if ((window.orientation == (-90)) || (window.orientation == (90))) {
+                var width = 520; var height = 285;
+                $('#map_canvas').css("width",width+"px");
+                $('#map_canvas').css("height",height+"px");
+                $('#map-overflow').css("width",(width-40)+"px");
+                $('#map-overflow').css("height",(height-10)+"px");
+            } else {
+                var width = 360; var height = 435;
+                $('#map_canvas').css("width",width+"px");
+                $('#map_canvas').css("height",height+"px");
+                $('#map-overflow').css("width",(width-40)+"px");
+                $('#map-overflow').css("height",(height-10)+"px");
+            }
+
+            var myLatlng = new google.maps.LatLng(52.1, 5.2);
+            var myOptions = {
+              zoom: 5,
+              center: myLatlng,
+              disableDefaultUI: true,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            var map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
+            var marker = new google.maps.Marker({
+              position: myLatlng,
+              map: map,
+              title: 'Map'
+            });
+        }
+
+        jQT = new $.jQTouch({
+        });
+
+        $(document).ready(function(e){
+            $(function(){
+                $('body').bind('turn', function(event, info){
+                    var curr = $(".current").attr("id");
+                    switch (curr) {
+                    case "map"       :
+                      if (info.orientation == "landscape") {
+                          var width = 520; var height = 285;
+                          $('#map_canvas').css("width",width+"px");
+                          $('#map_canvas').css("height",height+"px");
+                          $('#map-overflow').css("width",(width-40)+"px");
+                          $('#map-overflow').css("height",(height-10)+"px");
+                      } else {
+                          var width = 360; var height = 435;
+                          $('#map_canvas').css("width",width+"px");
+                          $('#map_canvas').css("height",height+"px");
+                          $('#map-overflow').css("width",(width-40)+"px");
+                          $('#map-overflow').css("height",(height-10)+"px");
+                      }
+                      break;
+                   }
+                });
+            });
+            $('#map').bind('pageAnimationEnd', function(event, info){
+                if (info.direction == 'in') {
+                    localiser();
+                }
+            });
+        });
+    </script>
+
+    </head>
+    <body>
+      <div id='jqt'>
+        <div id="home" class="current">
+            <div class="toolbar">
+            <h1 id="demo">Map demo</h1>
+            </div>
+            <ul class="rounded">
+            <li class="arrow"><a href="#map">Map</a></li>
+            </ul>
+        </div>
+
+        <div id="map" class="notransform">
+            <div class="toolbar">
+                <h1>Map demo</h1>
+                <a href="#" class="back">Back</a>
+            </div>
+            <div id="map-container" class="notransform">
+                <div id="map-overflow" style="overflow: hidden; padding: 0; border: 0;" class="notransform">
+                    <div id="map_canvas" style="margin-left: -20px; margin-top: -20px;" class="notransform"></div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </body>
+</html>

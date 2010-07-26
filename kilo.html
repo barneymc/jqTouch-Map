@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html manifest="manifest.php">
+    <head>
+        <title>Kilo</title>
+        <link rel="stylesheet" href="jqtouch/jqtouch.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="themes/jqt/theme.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <script type="text/javascript" src="jqtouch/jquery.1.3.2.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="jqtouch/jqtouch.min.js" charset="utf-8"></script>
+
+        <script type="text/javascript" src="kilo.js" charset="utf-8"></script>
+        <style type="text/css" media="screen">
+            #date ul li {
+                position: relative;
+            }
+            #date ul li span {
+                color: #FFFFFF;
+                text-shadow: rgba(0,0,0,.7) 0 1px 2px;
+            }
+            #date ul li .delete {
+                position: absolute;
+                top: 5px;
+                right: 6px;
+                font-size: 12px;
+                line-height: 30px;
+                padding: 0 3px;
+                border-width: 0 5px;
+                -webkit-border-image: url(themes/jqt/img/button.png) 0 5 0 5;
+            }
+            .content p {
+                margin:10px;
+            }
+            .content p a {
+                color:white;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="about">
+            <div class="toolbar">
+                <h1>About</h1>
+
+                <a class="button back" href="#">Back</a>
+            </div>
+            <div class="content">
+                <p>Kilo is a drop dead simple calorie tracking application that you can access from your iPhone or iPod Touch.</p>
+                <p>The first step to getting your weight under control is to keep a food diary to track what you are eating. If it's not easy to keep your diary updated, you are not going to do it.</p>
+                <p>All you have to do (in fact, all you can do) is enter the food you eat and the exercises that you do. Kilo will keep track of your total for the day and alert you if you go over the daily calorie budget you specify on your settings page. Stay under your target every day and you'll lose weight. It's really as simple as that.</p>
+            </div>
+
+        </div>
+        <div id="contact">
+            <div class="toolbar">
+                <h1>Contact</h1>
+                <a href="#" class="back button">Home</a>
+            </div>
+            <div class="content">
+                <p>I can't wait to hear from you!</p>
+
+                <p>Please feel free to contact me through my website:<br /><a target="_blank" href="http://jonathanstark.com/contact">jonathanstark.com/contact</a></p>
+                <p>Or on Twitter:<br /><a target="_blank" href="http://twitter.com/jonathanstark">twitter.com/jonathanstark</a></p>
+            </div>
+        </div>
+        <div id="createEntry">
+            <div class="toolbar">
+                <h1>New Entry</h1>
+
+                <a class="button cancel" href="#">Cancel</a>
+            </div>
+            <form method="post">
+                <ul class="rounded">
+                    <li><input type="text" placeholder="Food" name="food" id="food" /></li>
+                    <li><input type="tel" placeholder="Calories" name="calories" id="calories" /></li>
+                    <li><input type="submit" value="Save Entry" /></li>
+                </ul>
+
+            </form>
+        </div>
+        <div id="date">
+            <div class="toolbar">
+                <h1>Date</h1>
+                <a class="button back" href="#">Back</a>
+                <a class="button slideup" href="#createEntry">+</a>
+
+            </div>
+            <ul class="edgetoedge">
+                <li id="entryTemplate" class="entry" style="display:none">
+                    <span class="label">Label</span>
+                    <span class="calories">000</span>
+                    <span class="delete">Delete</span>
+                </li>
+
+            </ul>
+        </div>
+        <div id="dates">
+            <div class="toolbar">
+                <h1>Dates</h1>
+                <a class="button back" href="#">Back</a>
+            </div>
+            <ul class="edgetoedge">
+
+                <li class="arrow"><a id="0" href="#date">Today</a> <small class="counter">?</small></li>
+                <li class="arrow"><a id="1" href="#date">Yesterday</a> <small class="counter">?</small></li>
+                <li class="arrow"><a id="2" href="#date">2 Days Ago</a> <small class="counter">?</small></li>
+                <li class="arrow"><a id="3" href="#date">3 Days Ago</a> <small class="counter">?</small></li>
+
+                <li class="arrow"><a id="4" href="#date">4 Days Ago</a> <small class="counter">?</small></li>
+                <li class="arrow"><a id="5" href="#date">5 Days Ago</a> <small class="counter">?</small></li>
+            </ul>
+        </div>
+        <div id="editEntry">
+            <div class="toolbar">
+
+                <h1>Edit Entry</h1>
+                <a class="button cancel" href="#">Cancel</a>
+            </div>
+            <form method="post">
+                <ul class="rounded">
+                    <li><input type="text" placeholder="Food" name="food" value="" autocapitalize="off" autocorrect="off" autocomplete="off" /></li>
+                    <li><input type="tel" placeholder="Calories" name="calories" value="" autocapitalize="off" autocorrect="off" autocomplete="off" /></li>
+                    <li><input type="submit" value="Save Changes" /></li>
+
+                </ul>
+            </form>
+        </div>
+        <div id="home" class="current">
+            <div class="toolbar">
+                <h1>Kilo</h1>
+                <a class="button flip" href="#settings">Settings</a>
+            </div>
+
+            <ul class="rounded">
+                <li class="arrow"><a href="#dates">Dates</a></li>
+            </ul>
+            <ul class="rounded">
+                <li class="arrow"><a href="#about">About</a></li>
+                <li class="arrow"><a href="#contact">Contact</a></li>
+            </ul>
+
+        </div>
+        <div id="settings">
+            <div class="toolbar">
+                <h1>Settings</h1>
+                <a class="button cancel" href="#">Cancel</a>
+            </div>
+            <form method="post">
+                <ul class="rounded">
+
+                    <li><input placeholder="Age" type="tel" name="age" id="age" /></li>
+                    <li><input placeholder="Weight" type="tel" name="weight" id="weight" /></li>
+                    <li><input placeholder="Budget" type="tel" name="budget" id="budget" /></li>
+                    <li><input name="action" type="submit" value="Save Changes" /></li>
+                </ul>
+            </form>
+        </div>
+    </body>
+</html>
+

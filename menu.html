@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Kilo</title>
+		<!--
+        <link type="text/css" rel="stylesheet" media="screen" href="jqtouch/jqtouch.css">
+		-->
+		
+        <link type="text/css" rel="stylesheet" media="screen" href="themes/jqt/theme.css">
+		
+		<!--
+		<script type="text/javascript"  src="http://localhost/iPhone/jqTouch/xml2json.js"></script>
+		-->
+		 <script type="text/javascript" src="ccpc2.js"></script>
+        <script type="text/javascript" src="jqtouch/jquery.js"></script>
+        <script type="text/javascript" src="jqtouch/jqtouch.js"></script>
+       
+		<style>
+			.tabled
+			{
+				font-size:16pt;
+				height:100px;
+			}
+		</STYLE>
+    </head>
+    <body onload="getMenuStart()">
+	<!-- Really all this pages does is prove that the user is authenticated. This menu page could then be modified per each app -->
+<div id="home">
+			<div class="toolbar">
+                <h1>CCPC Menu</h1>
+                <a id="backbutton" class="button back" href="#">Login</a>
+            </div>
+			<div id="textdiv">
+				<textarea id="textm" name="texta" cols="60" rows="4">Stuff</textarea>
+			</div>
+			<ul class="edgetoedge">
+                <li class="arrow">
+					<a id="jobbuttonhref" href="jobs.html">
+						<input type="button" value="JobsButton" id="jobbutton">
+					</a>
+				</li>
+				<!--
+				<li class="arrow"><a id="0" href="#jobs" onclick="readrows();">News</a></li>
+				<li>
+					<a href="jobs.html?userid=1056" >Jobs for 1056</a>
+				</li>
+				-->
+            </ul>
+		</div>     
+    </body>
+</html>

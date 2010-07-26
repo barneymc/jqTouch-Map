@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>img{ height: 100px; float: left; }</style>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+ <script>
+function jsonFlickrFeed(o){
+  var i=0;
+  document.write('<P>');
+  while(i<2){
+  document.write('<P>');
+    document.write('<img src="' + o.items[i].media.m + '" alt="' + o.items[i].title +'">')
+    i++;
+  }
+}
+</script>
+
+<!--
+<script src="http://api.flickr.com/services/feeds/photos_public.gne?tags=ireland,galway,races&lang=en-us&format=json"></script>
+-->
+	<script>
+		function shoot()
+		{
+		//alert("here");
+		var obj=document.myForm.searc.value;
+		$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=" + obj + "&lang=en-us&format=json&jsoncallback=?",
+        function(data){var i=0;
+			document.write('<P>');
+			  while(i<20){
+			  document.write('<P>');
+				document.write('<img src="' + data.items[i].media.m + '" alt="' + data.items[i].title +'">')
+				i++;
+				//alert("1");
+				}
+				//alert("2");
+			});
+			//alert("3");
+		}
+	</script>
+</head>
+<body>
+<div>
+<form name="myForm">
+	<input type=text name="searc"></input>
+	<a href="javascript:shoot()">Submit</a>
+</form>
+</div>
+
+</body>
+</html>

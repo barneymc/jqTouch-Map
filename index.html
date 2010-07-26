@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html manifest="manifest.php">
+    <head>
+        <title>Kilo</title>
+		
+		
+        <link rel="stylesheet" href="jqtouch/jqtouch.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="themes/jqt/theme.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+		<script language="javascript" type="text/javascript" src="SQLStore_Pitch.js"></script>
+        <script type="text/javascript" src="jqtouch/jquery.1.3.2.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="jqtouch/jqtouch.min.js" charset="utf-8"></script>
+		
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		
+        <script type="text/javascript" src="kilo.js" charset="utf-8"></script>
+        <style type="text/css" media="screen">
+            #date ul li {
+                position: relative;
+            }
+            #date ul li span {
+                color: #FFFFFF;
+                text-shadow: rgba(0,0,0,.7) 0 1px 2px;
+            }
+            #date ul li .delete {
+                position: absolute;
+                top: 5px;
+                right: 6px;
+                font-size: 12px;
+                line-height: 30px;
+                padding: 0 3px;
+                border-width: 0 5px;
+                -webkit-border-image: url(themes/jqt/img/button.png) 0 5 0 5;
+            }
+            .content p {
+                margin:10px;
+            }
+            .content p a {
+                color:white;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body onload="initDB();LoadCounties();tryme();setstartdiv();">
+		<div id="home" class="current">
+            <div class="toolbar">
+                <h1> FindaPitch</h1>
+                <a class="button flip" href="#settings">Settings</a>
+            </div>
+            <ul class="rounded">
+                <li class="arrow"><a href="#locations">Locations Div</a></li>
+            </ul>
+            <ul class="rounded">
+                <li class="arrow"><a href="#County">County</a></li>
+            </ul>
+			<ul class="rounded">
+                <li class="arrow"><a href="#" id="madlink">County-Madlink</a></li>
+            </ul>
+			<ul class="rounded">
+                <li class="arrow"><a href="#" id="testtap">County-Test</a></li>
+            </ul>
+        </div>
+        <div id="County">
+			<div class="toolbar">
+                <h1>Counties</h1>
+                <a class="button back" href="#">Back</a>
+            </div>
+			<div id="contentdiv">
+			
+			</div>
+			
+			<ul class="rounded" id="bb">
+                <li class="arrow"><a href="#locations">Locations Div</a></li>
+            </ul>
+			
+        </div>
+		<div id="locations">
+            <div class="toolbar">
+                <h1>Locations Div</h1>
+                <a class="button back" href="#">Back</a>
+            </div>
+			<a href="shipmap.html">TEST</a>
+            <ul class="rounded" id="locationsul">
+               <li>Locations go here then...lets load em</li>
+            </ul>
+        </div>
+		<div id="locdetail">
+		    <div class="toolbar">
+                <h1>Locations Div</h1>
+                <a class="button back" href="#">Back</a>
+            </div>
+			<br>&nbsp;<br>
+			
+			<input type="text" id="latx" value="0"/>
+			<input type="text" id="laty" value="0"/>
+			<input type="text" id="locationid" value="0"/>
+			<input type="text" id="locationname" value="0"/>
+			<br>&nbsp;<br>
+			<div id="map_canvas" style="width: 300px; height: 300px; position: relative; background-color: rgb(229, 227, 223);"></div>
+		</div>
+        <div id="contact">
+            <div class="toolbar">
+                <h1>Contact</h1>
+                <a href="#" class="back button">Home</a>
+            </div>
+            <div class="content">
+                <p>I can't wait to hear from you!</p>
+                <p>Please feel free to contact me through my website:<br /><a target="_blank" href="http://jonathanstark.com/contact">jonathanstark.com/contact</a></p>
+                <p>Or on Twitter:<br /><a target="_blank" href="http://twitter.com/jonathanstark">twitter.com/jonathanstark</a></p>
+            </div>
+        </div>
+        <div id="createEntry">
+            <div class="toolbar">
+                <h1>New Entry</h1>
+                <a class="button cancel" href="#">Cancel</a>
+            </div>
+            <form method="post">
+                <ul class="rounded">
+                    <li><input type="text" placeholder="Food" name="food" id="food" /></li>
+                    <li><input type="tel" placeholder="Calories" name="calories" id="calories" /></li>
+                    <li><input type="submit" value="Save Entry" /></li>
+                </ul>
+            </form>
+        </div>
+        <div id="dates">
+            <div class="toolbar">
+                <h1>Date</h1>
+                <a class="button back" href="#">Back</a>
+                <a class="button slideup" href="#createEntry">+</a>
+            </div>
+            <ul class="edgetoedge">
+                <li id="entryTemplate" class="entry" style="display:none">
+                    <span class="label">Label</span>
+                    <span class="calories">000</span>
+                    <span class="delete">Delete</span>
+                </li>
+            </ul>
+        </div>
+        
+        <div id="editEntry">
+            <div class="toolbar">
+                <h1>Edit Entry</h1>
+                <a class="button cancel" href="#">Cancel</a>
+            </div>
+            <form method="post">
+                <ul class="rounded">
+                    <li><input type="text" placeholder="Food" name="food" value="" autocapitalize="off" autocorrect="off" autocomplete="off" /></li>
+                    <li><input type="tel" placeholder="Calories" name="calories" value="" autocapitalize="off" autocorrect="off" autocomplete="off" /></li>
+                    <li><input type="submit" value="Save Changes" /></li>
+                </ul>
+            </form>
+        </div>
+        
+        <div id="settings">
+            <div class="toolbar">
+                <h1>Settings</h1>
+                <a class="button cancel" href="#">Cancel</a>
+            </div>
+            <form method="post">
+                <ul class="rounded">
+                    <li><input placeholder="Age" type="tel" name="age" id="age" /></li>
+                    <li><input placeholder="Weight" type="tel" name="weight" id="weight" /></li>
+                    <li><input placeholder="Budget" type="tel" name="budget" id="budget" /></li>
+                    <li><input name="action" type="submit" value="Save Changes" /></li>
+                </ul>
+            </form>
+        </div>
+    </body>
+</html>
